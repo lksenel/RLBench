@@ -8,6 +8,7 @@ from rlbench.backend.conditions import DetectedCondition, NothingGrasped, \
     DetectedSeveralCondition
 from rlbench.backend.spawn_boundary import SpawnBoundary
 
+
 GROCERY_NAMES = [
     'crackers',
     'chocolate jello',
@@ -40,6 +41,7 @@ class PutAllGroceriesInCupboard(Task):
         self.groceries_placed = 0
 
     def init_episode(self, index: int) -> List[str]:
+        self.count = 0
         self.groceries_placed = 0
         self.boundary.clear()
         [self.boundary.sample(g, min_distance=0.15) for g in self.groceries]
@@ -77,3 +79,4 @@ class PutAllGroceriesInCupboard(Task):
     def _repeat(self):
         self.groceries_placed += 1
         return self.groceries_placed < self.groceries_to_place
+
