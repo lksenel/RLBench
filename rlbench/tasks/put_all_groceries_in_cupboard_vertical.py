@@ -12,12 +12,12 @@ import time
 # Change the order by changing the order of the objects in the list
 GROCERY_NAMES = [
     # 'crackers',
+    'sugar',
+    # 'spam',
+    'soup',
+    # 'mustard',
     # 'chocolate jello',
     'strawberry jello',
-    'spam',
-    'soup',
-    'sugar',
-    'mustard',
 ]
 
 UPRIGHT_OJECTS = [
@@ -150,13 +150,4 @@ class PutAllGroceriesInCupboardVertical(Task):
         self.groceries_placed += 1
         return self.groceries_placed < self.groceries_to_place
 
-    def step(self):
-        self.count += 1
-        print(self.count)
-        if self.count > 200 and self.count < 300:
-            if self.count == 201:
-                print('Starting to slowing down')
-            elif self.count == 299:
-                print('Finished slowing down')
-            # pause for 5 seconds
-            time.sleep(0.01)
+

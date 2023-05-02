@@ -58,6 +58,9 @@ class LoadedTask(object):
         self.task = self.task_class = self.task_file = None
         self._variation_index = 0
 
+        # set timesetp to 0.01
+        self.pr.set_simulation_timestep(0.01)
+
     def _load_task_to_scene(self):
         self.scene.unload()
         self.task = self.task_class(

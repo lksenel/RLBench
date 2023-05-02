@@ -10,13 +10,14 @@ from rlbench.backend.spawn_boundary import SpawnBoundary
 
 
 GROCERY_NAMES = [
-    'crackers',
-    'chocolate jello',
-    'strawberry jello',
-    'soup',
-    'spam',
-    'mustard',
+    # 'crackers',
+    
+    # 'strawberry jello',
     'sugar',
+    'soup',
+    # 'spam',
+    # 'mustard',
+    'chocolate jello',
 ]
 
 

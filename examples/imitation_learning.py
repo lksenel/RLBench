@@ -5,7 +5,7 @@ from rlbench.action_modes.arm_action_modes import JointVelocity
 from rlbench.action_modes.gripper_action_modes import Discrete
 from rlbench.environment import Environment
 from rlbench.observation_config import ObservationConfig
-from rlbench.tasks import ReachTarget
+from rlbench.tasks import ReachTarget #, PutKnifeOnChoppingBoardSlower
 
 
 class ImitationLearning(object):
@@ -32,6 +32,7 @@ env = Environment(
 env.launch()
 
 task = env.get_task(ReachTarget)
+# task = env.get_task(PutKnifeOnChoppingBoardSlower)
 
 il = ImitationLearning()
 
