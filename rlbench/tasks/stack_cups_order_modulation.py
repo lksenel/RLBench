@@ -26,28 +26,27 @@ class StackCupsOrderModulation(Task):
         self.waypoint2 = Dummy('waypoint2')
      
         # waypoints to drop cup 1 back on the table
-        self.waypoint9 = Dummy('waypoint9')
-        self.waypoint9.set_pose(self.waypoint2.get_pose())
+        self.waypoint4 = Dummy('waypoint4')
+
+        self.step_count = 0
+
+        # assert all(self.waypoint4.get_pose() == self.waypoint2.get_pose())
         
         # waypoint 10 opens the gripper by default
-        self.waypoint10 = Dummy('waypoint10')
-        self.waypoint10.set_pose(self.waypoint0.get_pose())
+        # self.waypoint5= Dummy('waypoint5')
+        # self.waypoint5.set_pose(self.waypoint0.get_pose())
         
 
-        # waypoints to pick up cup 1 again and place it on top of the other two
-        self.waypoint16 = Dummy('waypoint16')
-        self.waypoint16.set_pose(self.waypoint0.get_pose())
+        # # waypoints to pick up cup 1 again and place it on top of the other two
+        # self.waypoint16 = Dummy('waypoint16')
+        # self.waypoint16.set_pose(self.waypoint0.get_pose())
         
-        # waypoint 17 closes the gripper by default
-        self.waypoint17 = Dummy('waypoint17')
-        self.waypoint17.set_pose(self.waypoint1.get_pose())
+        # # waypoint 17 closes the gripper by default
+        # self.waypoint17 = Dummy('waypoint17')
+        # self.waypoint17.set_pose(self.waypoint1.get_pose())
 
-        self.waypoint18 = Dummy('waypoint18')
-        self.waypoint18.set_pose(self.waypoint2.get_pose())
-
-
-
-
+        # self.waypoint18 = Dummy('waypoint18')
+        # self.waypoint18.set_pose(self.waypoint2.get_pose())
 
 
         self.boundary = SpawnBoundary([Shape('boundary')])
@@ -60,6 +59,7 @@ class StackCupsOrderModulation(Task):
         ])
 
     def init_episode(self, index: int) -> List[str]:
+
         self.variation_index = index
         target_color_name, target_rgb = colors[index]
 
@@ -85,6 +85,7 @@ class StackCupsOrderModulation(Task):
         self.boundary.sample(self.cup3, min_distance=0.15,
                              min_rotation=(0, 0, 0), max_rotation=(0, 0, 0))
 
+
         return ['stack the other cups on top of the %s cup' % target_color_name,
                 'place two of the cups onto the odd cup out',
                 'put the remaining two cups on top of the %s cup'
@@ -99,6 +100,8 @@ class StackCupsOrderModulation(Task):
     def variation_count(self) -> int:
         return len(colors)
 
-    # def step(self):
-        # print position of waypoint 6
-        # print(self.waypoint6.get_position())
+    def step(self):
+        if self.step_count == 0:
+            self.waypoint4.set_pose(self.waypoint2.get_pose())
+
+        self.step_count += 1
