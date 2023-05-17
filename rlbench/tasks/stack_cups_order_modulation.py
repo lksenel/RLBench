@@ -28,9 +28,6 @@ class StackCupsOrderModulation(Task):
         # waypoints to drop cup 1 back on the table
         self.waypoint4 = Dummy('waypoint4')
 
-        self.step_count = 0
-
-        # assert all(self.waypoint4.get_pose() == self.waypoint2.get_pose())
         
         # waypoint 10 opens the gripper by default
         # self.waypoint5= Dummy('waypoint5')
@@ -60,6 +57,8 @@ class StackCupsOrderModulation(Task):
 
     def init_episode(self, index: int) -> List[str]:
 
+        self.step_count = 0
+        
         self.variation_index = index
         target_color_name, target_rgb = colors[index]
 
@@ -103,5 +102,4 @@ class StackCupsOrderModulation(Task):
     def step(self):
         if self.step_count == 0:
             self.waypoint4.set_pose(self.waypoint2.get_pose())
-
         self.step_count += 1
